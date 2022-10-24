@@ -9,6 +9,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -58,6 +61,15 @@ public class TestBase extends AbstractTestNGCucumberTests {
 		} else if (browserName.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", "Drivers\\msedgedriver.exe");
 			driver = new EdgeDriver();
+		} else if (browserName.equalsIgnoreCase("headless")) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);                
+			caps.setCapability("takesScreenshot", true);  
+			caps.setCapability(
+			                        PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+			                        "Drivers\\phantomjs.exe"
+			                    );
+			driver = new  PhantomJSDriver(caps);
 		}
 		
 		driver.manage().window().maximize();
