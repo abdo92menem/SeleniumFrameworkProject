@@ -2,12 +2,14 @@
 <suite name="Regression Suite" parallel="tests" thread-count="2">
 	<test name="Chrome Regression Test">
 		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="platform" value="OS X 10.9"></parameter>
 		<classes>
 			<class name="tests.UserRegistrationParallelTest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Firefox Regression Test">
 		<parameter name="browser" value="firefox"></parameter>
+		<parameter name="platform" value="Linux"></parameter>
 		<classes>
 			<class name="tests.UserRegistrationParallelTest" />
 		</classes>

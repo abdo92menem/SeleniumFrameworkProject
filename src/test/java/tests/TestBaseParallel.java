@@ -31,7 +31,11 @@ import utilities.Helper;
 public class TestBaseParallel {
 	
 	// SauceLabs Configuration
-	public static final String SAUCE_URL = "https://oauth-abdullah.nerds.test-2b04b:b6e2ea9e-3bb5-4c95-a532-c28b01e996b6@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
+	public static final String USER_NAME = LoadProperties.sauceLabsData.getProperty("username");
+	public static final String ACCESS_KEY = LoadProperties.sauceLabsData.getProperty("accessKey");
+	public static final String SAUCE_URL = "https://" + USER_NAME + ":" 
+													  + ACCESS_KEY +
+													  LoadProperties.sauceLabsData.getProperty("sauceLabsURL");
 	
 	
 	public static String BaseURL = "https://demo.nopcommerce.com/";
