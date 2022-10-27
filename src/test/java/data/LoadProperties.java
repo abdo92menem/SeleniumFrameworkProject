@@ -7,7 +7,12 @@ import java.util.Properties;
 
 public class LoadProperties {
 	// Load the properties file from the folder
-	public static Properties userData = loadProperties(System.getProperty("user.dir") + "\\src\\main\\java\\properties\\userData.properties");
+	public static Properties userData = 
+			loadProperties(System.getProperty("user.dir") + "\\src\\main\\java\\properties\\userData.properties");
+	
+	// Load SauceLab account data
+	public static Properties sauceLabsData = 
+			loadProperties(System.getProperty("user.dir") + "\\src\\main\\java\\properties\\sauceLabsUser.properties");
 	
 	private static Properties loadProperties(String path) {
 		Properties properties = new Properties();

@@ -24,10 +24,19 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import data.LoadProperties;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import utilities.Helper;
 
 public class TestBaseParallel {
+	
+	// SauceLabs Configuration
+	public static final String USER_NAME = LoadProperties.sauceLabsData.getProperty("username");
+	public static final String ACCESS_KEY = LoadProperties.sauceLabsData.getProperty("accessKey");
+	public static final String SAUCE_URL = "https://" + USER_NAME + ":" 
+													  + ACCESS_KEY +
+													  LoadProperties.sauceLabsData.getProperty("sauceLabsURL");
+	
 	
 	public static String BaseURL = "https://demo.nopcommerce.com/";
 	
@@ -40,7 +49,12 @@ public class TestBaseParallel {
 		driver = new ThreadLocal<>();
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("browserName", browser);
-		driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps));
+		
+		// Run on SauceLabs
+		driver.set(new RemoteWebDriver(new URL(SAUCE_URL), caps));
+		
+		// Selenium Grid on local
+//		driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps));
 		getDriver().navigate().to(BaseURL);
 	}
 	
